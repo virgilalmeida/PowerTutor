@@ -61,7 +61,15 @@
           android:layout_width="fill_parent"
           android:layout_height="wrap_content" 
           android:textSize="8pt"
-        />   
+        />
+
+      <Button
+          android:id="@+id/SendLog"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="Send Log"
+          android:layout_weight="0.25"
+          android:textSize="8pt" />
     </LinearLayout>
     <FrameLayout
         android:layout_width="0px"

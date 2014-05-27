@@ -20,6 +20,7 @@ Please send inquiries to powertutor@umich.edu
 package edu.umich.PowerTutor.phone;
 
 import edu.umich.PowerTutor.components.*;
+import edu.umich.PowerTutor.components.GPSWifi.GPSWifiData;
 import edu.umich.PowerTutor.components.LCD.LcdData;
 import edu.umich.PowerTutor.components.OLED.OledData;
 import edu.umich.PowerTutor.components.CPU.CpuData;
@@ -28,7 +29,6 @@ import edu.umich.PowerTutor.components.GPS.GpsData;
 import edu.umich.PowerTutor.components.Wifi.WifiData;
 import edu.umich.PowerTutor.components.Threeg.ThreegData;
 import edu.umich.PowerTutor.components.Sensors.SensorData;
-
 import android.content.Context;
 
 public class DreamPowerCalculator implements PhonePowerCalculator {
@@ -142,6 +142,11 @@ public class DreamPowerCalculator implements PhonePowerCalculator {
     }
     return result;
   }
+  
+  public double getGPSWIFIPower(GPSWifiData data) {
+	 double result = 1;
+	 return result;
+}
 
   /* Returns the largest index y such that if x were inserted into A (which
    * should already be sorted) at y then A would remain sorted.

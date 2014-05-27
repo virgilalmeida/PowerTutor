@@ -19,6 +19,7 @@ Please send inquiries to powertutor@umich.edu
 
 package edu.umich.PowerTutor.phone;
 
+import edu.umich.PowerTutor.components.GPSWifi.GPSWifiData;
 import edu.umich.PowerTutor.components.LCD.LcdData;
 import edu.umich.PowerTutor.components.OLED.OledData;
 import edu.umich.PowerTutor.components.CPU.CpuData;
@@ -36,6 +37,8 @@ public interface PhonePowerCalculator {
   public double getCpuPower(CpuData data);
 
   public double getAudioPower(AudioData data);
+  
+  public double getGPSWIFIPower(GPSWifiData data);
 
   public double getGpsPower(GpsData data);
 

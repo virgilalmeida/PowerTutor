@@ -72,7 +72,7 @@ public class PowerEstimator implements Runnable {
       "GPSAudioWifi3GLCDCPU-power ";
 
   public static final int ALL_COMPONENTS = -1;
-  public static final int ITERATION_INTERVAL = 1000; // 1 second
+  public static final int ITERATION_INTERVAL = 1000*60*2; // 1*60*2 second
 
   private UMLoggerService context;
   private SharedPreferences prefs;
@@ -122,7 +122,7 @@ public class PowerEstimator implements Runnable {
         /* There is data to send.  Make sure that gets going in the sending
          * process before we write over any old logs.
          */
-        logUploader.upload(logFilename);
+    	  logUploader.upload(logFilename);
       }
       Deflater deflater = new Deflater();
       deflater.setDictionary(DEFLATE_DICTIONARY.getBytes());
@@ -330,7 +330,7 @@ public class PowerEstimator implements Runnable {
       synchronized(fileWriteLock) {
         if(logStream != null) try {
           if(firstLogIteration) {
-            firstLogIteration = false;
+            firstLogIteration = true;
             logStream.write("time " + System.currentTimeMillis() + "\n");
             Calendar cal = new GregorianCalendar();
             logStream.write("localtime_offset " +
@@ -344,7 +344,7 @@ public class PowerEstimator implements Runnable {
               logStream.write("batt_full_capacity " + bst.getFullCapacity()
                               + "\n");
             }
-            synchronized(uidAppIds) {
+            /*synchronized(uidAppIds) {
               for(int uid : uidAppIds.keySet()) {
                 if(uid < SystemInfo.AID_APP) {
                   continue;
@@ -352,7 +352,7 @@ public class PowerEstimator implements Runnable {
                 logStream.write("associate " + uid + " " + uidAppIds.get(uid)
                                 + "\n");
               }
-            }
+            }*/
           }
           logStream.write("begin " + iter + "\n");
           logStream.write("total-power " + (long)Math.round(totalPower) + '\n');
@@ -363,7 +363,9 @@ public class PowerEstimator implements Runnable {
           for(int i = 0; i < components; i++) {
             IterationData data = dataTemp[i];
             if(data != null) {
+             	
               String name = powerComponents.get(i).getComponentName();
+              if (name == "GPSWifi"){
               SparseArray<PowerData> uidData = data.getUidPowerData();
               for(int j = 0; j < uidData.size(); j++) {
                 int uid = uidData.keyAt(j);
@@ -377,7 +379,9 @@ public class PowerEstimator implements Runnable {
                                   powerData.getCachedPower()) + "\n");
                 }
               }
+              }
               data.recycle();
+              
             }
           }
         } catch(IOException e) {

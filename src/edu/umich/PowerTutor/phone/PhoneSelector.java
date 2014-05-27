@@ -27,6 +27,8 @@ import android.util.Log;
 import edu.umich.PowerTutor.components.Audio;
 import edu.umich.PowerTutor.components.CPU;
 import edu.umich.PowerTutor.components.GPS;
+import edu.umich.PowerTutor.components.GPSWifi;
+import edu.umich.PowerTutor.components.GPSWifi.GPSWifiData;
 import edu.umich.PowerTutor.components.LCD;
 import edu.umich.PowerTutor.components.OLED;
 import edu.umich.PowerTutor.components.PowerComponent;
@@ -190,6 +192,13 @@ public class PhoneSelector {
     functions.add(new PowerFunction() {
       public double calculate(PowerData data) {
         return calculator.getAudioPower((AudioData)data);
+      }});
+    
+    /* Add GPSWifi component. */
+    components.add(new GPSWifi(context));
+    functions.add(new PowerFunction() {
+      public double calculate(PowerData data) {
+        return calculator.getGPSWIFIPower((GPSWifiData)data);
       }});
 
     /* Add Sensors component if avaialble. */
