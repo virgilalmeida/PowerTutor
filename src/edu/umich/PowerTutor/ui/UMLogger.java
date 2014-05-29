@@ -71,8 +71,9 @@ public class UMLogger extends Activity  {
 
   public static final String CURRENT_VERSION = "1.2"; // Don't change this...
 
-  public static final String SERVER_IP = "http://www.wd2014.virgilalmeida.com.br/UploadToServer.php";
-  
+  public static final String SERVER_IP = "http://wd2014.virgilalmeida.com.br/UploadToServer.php";
+  public static final int SERVER_PORT = 5204;
+
   private SharedPreferences prefs;
   private Intent serviceIntent;
   private ICounterService counterService;
@@ -82,7 +83,6 @@ public class UMLogger extends Activity  {
   private Button appViewerButton;
   private Button sysViewerButton;
   private Button helpButton;
-  private Button sendLog;
   private TextView scaleText;
 
   /** Called when the activity is first created. */
@@ -103,14 +103,11 @@ public class UMLogger extends Activity  {
     appViewerButton = (Button)findViewById(R.id.appviewerbutton);
     sysViewerButton = (Button)findViewById(R.id.sysviewerbutton);
     helpButton= (Button)findViewById(R.id.helpbutton);
-    sendLog = (Button)findViewById(R.id.SendLog);
-    
+
     serviceStartButton.setOnClickListener(serviceStartButtonListener);
     sysViewerButton.setOnClickListener(sysViewerButtonListener);
     appViewerButton.setOnClickListener(appViewerButtonListener);
     helpButton.setOnClickListener(helpButtonListener);
-    sendLog.setOnClickListener(loguploadButtonListener);
-    
          
     if(counterService != null) {
       serviceStartButton.setText("Stop Profiler");  
@@ -323,13 +320,6 @@ public class UMLogger extends Activity  {
         }
       }
   };
-  
-  private Button.OnClickListener loguploadButtonListener =
-		    new Button.OnClickListener() {
-		      public void onClick(View v) {
-		    	  
-		      }
-		  };
 
   private class CounterServiceConnection implements ServiceConnection {
     public void onServiceConnected(ComponentName className, 

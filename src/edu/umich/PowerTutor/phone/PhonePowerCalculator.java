@@ -37,8 +37,6 @@ public interface PhonePowerCalculator {
   public double getCpuPower(CpuData data);
 
   public double getAudioPower(AudioData data);
-  
-  public double getGPSWIFIPower(GPSWifiData data);
 
   public double getGpsPower(GpsData data);
 
@@ -47,5 +45,7 @@ public interface PhonePowerCalculator {
   public double getThreeGPower(ThreegData data);
 
   public double getSensorPower(SensorData data);
+  
+  public double getGPSWifiPower(GPSWifiData data);
 }
 

@@ -72,7 +72,7 @@ public class Wifi extends PowerComponent {
     }
 
     public void init() {
-      wifiOn = true;
+      wifiOn = false;
     }
 
     public void writeLogDataInfo(OutputStreamWriter out) throws IOException {

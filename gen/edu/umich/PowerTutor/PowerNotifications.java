@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /local/WD2014/UMLogger/src/edu/umich/PowerTutor/PowerNotifications.aidl
+ * Original file: /local/PowerTutor/src/edu/umich/PowerTutor/PowerNotifications.aidl
  */
 package edu.umich.PowerTutor;
 public interface PowerNotifications extends android.os.IInterface

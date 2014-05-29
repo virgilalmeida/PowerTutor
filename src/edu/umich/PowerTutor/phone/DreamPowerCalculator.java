@@ -143,10 +143,23 @@ public class DreamPowerCalculator implements PhonePowerCalculator {
     return result;
   }
   
-  public double getGPSWIFIPower(GPSWifiData data) {
-	 double result = 1;
-	 return result;
-}
+  public double getGPSWifiPower(GPSWifiData data) {
+	  double result = 0;
+	  double[] linkSpeeds = coeffs.wifiLinkSpeeds();
+      double[] linkRatios = coeffs.wifiLinkRatios();
+      int ind = upperBound(linkSpeeds,1);
+      if(ind == 0) ind++;
+      if(ind == linkSpeeds.length) ind--;
+      double ratio;
+      ratio = linkRatios[ind - 1] + (linkRatios[ind] - linkRatios[ind - 1]) /
+              (linkSpeeds[ind] - linkSpeeds[ind - 1]) *
+              (1 - linkSpeeds[ind - 1]);
+      result = Math.max(0, coeffs.wifiHighPower() + ratio * 1);
+      
+      double statePower[] = coeffs.gpsStatePower();
+      result += 1 * statePower[2];
+     return result;
+}  
 
   /* Returns the largest index y such that if x were inserted into A (which
    * should already be sorted) at y then A would remain sorted.
